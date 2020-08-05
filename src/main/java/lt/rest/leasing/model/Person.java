@@ -14,14 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User extends BaseEntity{
+public class Person extends BaseEntity{
 
     private String name;
     private String surname;
     private String email;
     private BigDecimal income;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<LeasingApply> leasingApply;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private LeasingApply leasingApply;
 
 }

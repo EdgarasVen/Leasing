@@ -1,17 +1,18 @@
 package lt.rest.leasing.dto;
 
+import lombok.Getter;
 import lt.rest.leasing.model.LeasingApply;
-import lt.rest.leasing.model.User;
+import lt.rest.leasing.model.Person;
 import lt.rest.leasing.model.Vehicle;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+@Getter
 public class ApplyDto {
 
-    private String name;
-    private String surname;
-    private String email;
-    private BigDecimal income;
+    private List<PersonDto> family;
 
     private String carName;
     private double engine;
@@ -19,13 +20,18 @@ public class ApplyDto {
 
     private BigDecimal requestedMoney;
 
-    public User toUser(){
-        User user=new User();
-        user.setName(name);
-        user.setSurname(surname);
-        user.setEmail(email);
-        user.setIncome(income);
-        return user;
+    public List<Person> toPersonList(){
+        List<Person> personList=new ArrayList<>();
+        for (PersonDto personDto: family
+             ) {
+            Person person =new Person();
+            person.setName(personDto.getName());
+            person.setSurname(personDto.getSurname());
+            person.setEmail(personDto.getEmail());
+            person.setIncome(personDto.getIncome());
+            personList.add(person);
+        }
+        return personList;
     }
 
     public Vehicle toVehicle(){

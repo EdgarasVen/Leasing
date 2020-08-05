@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Setter
 @Getter
@@ -19,9 +20,8 @@ public class LeasingApply extends BaseEntity{
     private BigDecimal requestedMoney;
     private boolean answer;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @OneToMany(mappedBy = "leasingApply", cascade = CascadeType.ALL)
+    private List<Person> person;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "leasing_id", referencedColumnName = "id")
