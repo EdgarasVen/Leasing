@@ -17,6 +17,7 @@ import java.math.BigDecimal;
 public class LeasingApply extends BaseEntity{
 
     private BigDecimal requestedMoney;
+    private boolean answer;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
