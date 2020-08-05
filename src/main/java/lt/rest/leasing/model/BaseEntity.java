@@ -1,5 +1,7 @@
 package lt.rest.leasing.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import lt.rest.leasing.enums.Status;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -8,6 +10,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @MappedSuperclass
+@Getter
+@Setter
 public class BaseEntity {
 
     @Id

@@ -21,7 +21,7 @@ public class Person extends BaseEntity{
     private String email;
     private BigDecimal income;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private LeasingApply leasingApply;
 
 }

@@ -21,7 +21,7 @@ public class LeasingApply extends BaseEntity{
     private boolean answer;
 
     @OneToMany(mappedBy = "leasingApply", cascade = CascadeType.ALL)
-    private List<Person> person;
+    private List<Person> family;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "leasing_id", referencedColumnName = "id")

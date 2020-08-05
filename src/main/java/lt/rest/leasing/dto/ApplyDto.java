@@ -1,6 +1,7 @@
 package lt.rest.leasing.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import lt.rest.leasing.model.LeasingApply;
 import lt.rest.leasing.model.Person;
 import lt.rest.leasing.model.Vehicle;
@@ -10,13 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 public class ApplyDto {
 
     private List<PersonDto> family;
-
-    private String carName;
-    private double engine;
-    private BigDecimal cost;
+    private VehicleDto vehicleDto;
 
     private BigDecimal requestedMoney;
 
@@ -36,9 +35,9 @@ public class ApplyDto {
 
     public Vehicle toVehicle(){
         Vehicle vehicle=new Vehicle();
-        vehicle.setCarName(carName);
-        vehicle.setEngine(engine);
-        vehicle.setCost(cost);
+        vehicle.setCarName(vehicleDto.getCarName());
+        vehicle.setEngine(vehicleDto.getEngine());
+        vehicle.setCost(vehicleDto.getCost());
         return vehicle;
     }
 
