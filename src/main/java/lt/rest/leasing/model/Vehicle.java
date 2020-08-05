@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Entity
 public class Vehicle extends BaseEntity{
 
-    private String name;
+    private String carName;
     private double engine;
     private BigDecimal cost;
 
