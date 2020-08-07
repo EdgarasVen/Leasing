@@ -21,6 +21,7 @@ public class ServiceIncomeTest {
 
     @Autowired
     ControllerV1 controller;
+
     @Autowired
     ApplyService service;
 
