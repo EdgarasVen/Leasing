@@ -1,6 +1,7 @@
 package lt.rest.leasing.service;
 
 import lombok.extern.slf4j.Slf4j;
+import lt.rest.leasing.exceptions.ResourceNotFindException;
 import lt.rest.leasing.model.LeasingApply;
 import lt.rest.leasing.model.Person;
 import lt.rest.leasing.model.Vehicle;
@@ -31,11 +32,13 @@ public class ApplyServiceImp implements ApplyService{
     @Override
     public void addListOfPersons(List<Person> personList) {
         repoPerson.saveAll(personList);
+        log.info("IN addListOfPersons - list added, list size: {}",personList.size());
     }
 
     @Override
     public void addVehicle(Vehicle vehicle) {
         repoVehicle.save(vehicle);
+        log.info("IN addVehicle - vehicle added");
     }
 
     @Override
@@ -61,11 +64,14 @@ public class ApplyServiceImp implements ApplyService{
         leasingApply.setAnswer(answer);
 
         repoLeasingApply.save(leasingApply);
+        log.info("IN addLeasingApply - full apply added");
         return answer;
     }
 
     @Override
     public boolean checkLeasingResultById(Long id) {
-        return false;
+        LeasingApply apply=repoLeasingApply.findById(id).orElseThrow(() ->new ResourceNotFindException("Apply not find"));
+        log.info("IN checkLeasingResultById - apply find by id: {}",id);
+        return apply.isAnswer();
     }
 }

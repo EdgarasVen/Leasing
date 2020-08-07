@@ -8,7 +8,6 @@ import lt.rest.leasing.service.ApplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,10 +25,10 @@ public class RestControllerV1 {
 
     @PostMapping("/apply")
     public ResponseEntity<Map<Object,Object>> addLeasingApply (
-            @RequestBody final ApplyDto applyDto) {
-
-        LeasingApply apply=applyDto.toLeasingApply();
-        List<Person> list= applyDto.toPersonList();
+            @RequestBody final ApplyDto applyDto
+    ) {
+        LeasingApply apply = applyDto.toLeasingApply();
+        List<Person> list = applyDto.toPersonList();
         Vehicle vehicle=applyDto.toVehicle();
         apply.setFamily(list);
         apply.setVehicle(vehicle);
@@ -38,7 +37,20 @@ public class RestControllerV1 {
 
         Map<Object, Object> response = new HashMap<>();
         response.put("Apply ID",apply.getId());
-        response.put("Apply answer",true);
+        response.put("Apply answer",
+                service.checkLeasingResultById(apply.getId()));
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/apply/{id}")
+    public ResponseEntity<Map<Object,Object>> getApplyAnswerById(
+            @PathVariable Long id
+    ) {
+        boolean answer = service.checkLeasingResultById(id);
+        Map<Object, Object> response = new HashMap<>();
+        response.put("Apply ID",id);
+        response.put("Apply answer", answer);
+        return  ResponseEntity.ok(response);
+    }
+
 }
