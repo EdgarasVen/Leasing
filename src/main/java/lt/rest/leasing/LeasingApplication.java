@@ -38,6 +38,7 @@ public class LeasingApplication implements CommandLineRunner {
 		vehicle.setCarName("Dodge firefly");
 
 		ApplyDto apply=new ApplyDto();
+		apply.setRequestedMoney(BigDecimal.valueOf(120000));
 		apply.setFamily(list);
 		apply.setVehicleDto(vehicle);
 

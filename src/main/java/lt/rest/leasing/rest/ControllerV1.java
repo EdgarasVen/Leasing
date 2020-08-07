@@ -1,6 +1,5 @@
 package lt.rest.leasing.rest;
 
-import io.swagger.annotations.ApiOperation;
 import lt.rest.leasing.dto.ApplyDto;
 import lt.rest.leasing.model.LeasingApply;
 import lt.rest.leasing.model.Person;

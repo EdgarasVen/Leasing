@@ -3,7 +3,6 @@ package lt.rest.leasing.service;
 import lt.rest.leasing.model.LeasingApply;
 import lt.rest.leasing.model.Person;
 import lt.rest.leasing.model.Vehicle;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
