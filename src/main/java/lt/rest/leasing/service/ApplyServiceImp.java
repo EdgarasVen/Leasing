@@ -9,6 +9,7 @@ import lt.rest.leasing.repo.RepoLeasingApply;
 import lt.rest.leasing.repo.RepoPerson;
 import lt.rest.leasing.repo.RepoVehicle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.IntSummaryStatistics;
@@ -21,6 +22,9 @@ public class ApplyServiceImp implements ApplyService{
     RepoVehicle repoVehicle;
     RepoLeasingApply repoLeasingApply;
     RepoPerson repoPerson;
+
+    @Value("${income.requirements}")
+    private int INCOME_REQUIREMENTS;
 
     @Autowired
     public ApplyServiceImp(RepoVehicle repoVehicle, RepoLeasingApply repoLeasingApply, RepoPerson repoPerson) {
@@ -55,7 +59,7 @@ public class ApplyServiceImp implements ApplyService{
         stats=family.stream()
                 .flatMapToInt(person -> IntStream.of(person.getIncome().intValue()))
                 .summaryStatistics();
-        boolean answer = stats.getAverage()>600;
+        boolean answer = stats.getAverage()>INCOME_REQUIREMENTS;
         addListOfPersons(family);
         vehicle.setLeasingApply(leasingApply);
         addVehicle(vehicle);

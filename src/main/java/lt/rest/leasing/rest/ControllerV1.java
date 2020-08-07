@@ -1,5 +1,6 @@
 package lt.rest.leasing.rest;
 
+import io.swagger.annotations.ApiOperation;
 import lt.rest.leasing.dto.ApplyDto;
 import lt.rest.leasing.model.LeasingApply;
 import lt.rest.leasing.model.Person;
@@ -15,16 +16,17 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/")
-public class RestControllerV1 {
+public class ControllerV1 implements Controller {
     ApplyService service;
 
     @Autowired
-    public RestControllerV1(ApplyService service) {
+    public ControllerV1(ApplyService service) {
         this.service = service;
     }
 
+    @Override
     @PostMapping("/apply")
-    public ResponseEntity<Map<Object,Object>> addLeasingApply (
+    public ResponseEntity<Map<Object,Object>> addLeasingApply(
             @RequestBody final ApplyDto applyDto
     ) {
         LeasingApply apply = applyDto.toLeasingApply();
@@ -42,6 +44,7 @@ public class RestControllerV1 {
         return ResponseEntity.ok(response);
     }
 
+    @Override
     @GetMapping("/apply/{id}")
     public ResponseEntity<Map<Object,Object>> getApplyAnswerById(
             @PathVariable Long id

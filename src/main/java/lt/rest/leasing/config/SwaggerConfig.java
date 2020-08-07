@@ -23,7 +23,7 @@ public class SwaggerConfig {
 	}
 
 	public ApiInfo metadata() {
-		return new ApiInfoBuilder().title("Manager").description("Rest api")
+		return new ApiInfoBuilder().title("REST API documentation").description("Rest api for leasing. ")
 				.version("1.0").build();
 	}
 
